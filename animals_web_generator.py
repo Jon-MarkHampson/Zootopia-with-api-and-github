@@ -29,6 +29,9 @@ def generate_animals_html_content(animals_data):
             "Diet": animal.get("characteristics", {}).get("diet"),
             "Location": animal.get("locations")[0],
             "Type": animal.get("characteristics", {}).get("type"),
+            "Most Distinctive Feature": animal.get("characteristics", {}).get("most_distinctive_feature"),
+            "Scientific Name": animal.get("taxonomy", {}).get("scientific_name"),
+            "Biggest Threat": animal.get("characteristics", {}).get("biggest_threat")
         }
 
         # Remove None or empty values
