@@ -7,12 +7,19 @@ def load_data(file_path):
         return json.load(handle)
 
 
+def concat_dict_to_html_format(animal_dict):
+    output = "<li class='cards-item'><br/>\n"
+    for key, value in animal_dict.items():
+        output += f"{key}: {value}<br/>\n"
+    return output
+
+
 with open("animals_template.html", "r", encoding="utf-8") as file:
     html_content = file.read()
 
 animals_data = load_data('animals_data.json')
 
-output = ""
+animal_html_output = ""
 for animal in animals_data:
     name = animal.get('name')
     characteristics = animal.get('characteristics', {})
@@ -20,17 +27,20 @@ for animal in animals_data:
     locations = animal.get('locations')
     animal_type = characteristics.get('type')
 
-    if name:
-        output += f"Name: {name}\n"
-    if diet:
-        output += f"Diet: {diet}\n"
-    if locations:
-        output += f"Location: {locations[0]}\n"
-    if animal_type:
-        output += f"Type: {animal_type}\n"
-    output += "\n"
+    individual_animal_dict = {}
 
-modified_html_content = html_content.replace("__REPLACE_ANIMALS_INFO__", output)
+    if name:
+        individual_animal_dict["Name"] = name
+    if diet:
+        individual_animal_dict["Diet"] = diet
+    if locations:
+        individual_animal_dict["Location"] = locations[0]
+    if animal_type:
+        individual_animal_dict["Type"] = animal_type
+
+    animal_html_output += concat_dict_to_html_format(individual_animal_dict)
+
+modified_html_content = html_content.replace("__REPLACE_ANIMALS_INFO__", animal_html_output)
 
 with open("animals.html", "w", encoding="utf-8") as file:
     file.write(modified_html_content)
