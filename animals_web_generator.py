@@ -14,34 +14,37 @@ def concat_dict_to_html_format(animal_dict):
     lines.append("</li>")
     return "\n".join(lines)
 
+def main():
+    with open("animals_template.html", "r", encoding="utf-8") as file:
+        html_content = file.read()
 
-with open("animals_template.html", "r", encoding="utf-8") as file:
-    html_content = file.read()
+    animals_data = load_data('animals_data.json')
 
-animals_data = load_data('animals_data.json')
+    animal_html_output = ""
+    for animal in animals_data:
+        name = animal.get('name')
+        characteristics = animal.get('characteristics', {})
+        diet = characteristics.get('diet')
+        locations = animal.get('locations')
+        animal_type = characteristics.get('type')
 
-animal_html_output = ""
-for animal in animals_data:
-    name = animal.get('name')
-    characteristics = animal.get('characteristics', {})
-    diet = characteristics.get('diet')
-    locations = animal.get('locations')
-    animal_type = characteristics.get('type')
+        individual_animal_dict = {}
 
-    individual_animal_dict = {}
+        if name:
+            individual_animal_dict["Name"] = name
+        if diet:
+            individual_animal_dict["Diet"] = diet
+        if locations:
+            individual_animal_dict["Location"] = locations[0]
+        if animal_type:
+            individual_animal_dict["Type"] = animal_type
 
-    if name:
-        individual_animal_dict["Name"] = name
-    if diet:
-        individual_animal_dict["Diet"] = diet
-    if locations:
-        individual_animal_dict["Location"] = locations[0]
-    if animal_type:
-        individual_animal_dict["Type"] = animal_type
+        animal_html_output += concat_dict_to_html_format(individual_animal_dict)
 
-    animal_html_output += concat_dict_to_html_format(individual_animal_dict)
+    modified_html_content = html_content.replace("__REPLACE_ANIMALS_INFO__", animal_html_output)
 
-modified_html_content = html_content.replace("__REPLACE_ANIMALS_INFO__", animal_html_output)
+    with open("animals.html", "w", encoding="utf-8") as file:
+        file.write(modified_html_content)
 
-with open("animals.html", "w", encoding="utf-8") as file:
-    file.write(modified_html_content)
+if __name__ == "__main__":
+    main()
