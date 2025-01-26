@@ -14,14 +14,10 @@ def concat_dict_to_html_format(animal_dict):
         [f"<strong>{key}:</strong> {value}<br/>" for key, value in animal_dict.items() if key != "Name"]
     )
 
-    return f"""
-<li class="cards__item">
-  <div class="card__title">{title}</div>
-  <p class="card__text">
-        {details}
-  </p>
-</li>
-"""
+    return f"""<li class="cards__item">
+<div class="card__title">{title}</div>
+<p class="card__text">{details}
+</p></li>"""
 
 
 def generate_animals_html_content(animals_data):
@@ -31,9 +27,10 @@ def generate_animals_html_content(animals_data):
         individual_animal_dict = {
             "Name": animal.get("name"),
             "Diet": animal.get("characteristics", {}).get("diet"),
-            "Location": ", ".join(animal.get("locations", [])),
+            "Location": animal.get("locations")[0],
             "Type": animal.get("characteristics", {}).get("type"),
         }
+
         # Remove None or empty values
         individual_animal_dict = {k: v for k, v in individual_animal_dict.items() if v}
         html_output.append(concat_dict_to_html_format(individual_animal_dict))
