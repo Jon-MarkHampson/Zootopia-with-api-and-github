@@ -31,18 +31,30 @@ def generate_animals_html_content(animals_data):
     return "\n".join(html_output)
 
 
+def process_and_save_template(template_file, placeholder, html_content, output_file):
+    """
+    Reads the template, replaces the placeholder with HTML content,
+    and writes the result to the output file.
+    """
+    with open(template_file, "r", encoding="utf-8") as file:
+        template = file.read()
+    modified_html = template.replace(placeholder, html_content)
+    with open(output_file, "w", encoding="utf-8") as file:
+        file.write(modified_html)
+
+
 def main():
     """Main function to generate the animals.html file."""
-    with open("animals_template.html", "r", encoding="utf-8") as file:
-        html_content = file.read()
+    # File paths
+    template_file = "animals_template.html"
+    data_file = "animals_data.json"
+    output_file = "animals.html"
 
-    animals_data = load_data('animals_data.json')
+    placeholder_text_in_template = "__REPLACE_ANIMALS_INFO__"
 
+    animals_data = load_data(data_file)
     animals_html_content = generate_animals_html_content(animals_data)
-    modified_html_content = html_content.replace("__REPLACE_ANIMALS_INFO__", animals_html_content)
-
-    with open("animals.html", "w", encoding="utf-8") as file:
-        file.write(modified_html_content)
+    process_and_save_template(template_file, placeholder_text_in_template, animals_html_content, output_file)
 
 
 if __name__ == "__main__":
