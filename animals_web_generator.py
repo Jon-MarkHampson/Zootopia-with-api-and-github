@@ -8,10 +8,11 @@ def load_data(file_path):
 
 
 def concat_dict_to_html_format(animal_dict):
-    output = "<li class='cards-item'><br/>\n"
-    for key, value in animal_dict.items():
-        output += f"{key}: {value}<br/>\n"
-    return output
+    """Creates an HTML list item from a dictionary."""
+    lines = ["<li class='cards-item'><br/>"]
+    lines.extend([f"{key}: {value}<br/>" for key, value in animal_dict.items()])
+    lines.append("</li>")
+    return "\n".join(lines)
 
 
 with open("animals_template.html", "r", encoding="utf-8") as file:
