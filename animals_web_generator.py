@@ -27,23 +27,24 @@ def concat_dict_to_html_format(animal_dict):
 </li>"""
 
 
-def generate_animals_html_content(animals_data):
+def generate_animals_html_content(animals_data, skin_type):
     """Generates the HTML content for all animals."""
     html_output = []
     for animal in animals_data:
-        individual_animal_dict = {
-            "Name": animal.get("name"),
-            "Diet": animal.get("characteristics", {}).get("diet"),
-            "Location": animal.get("locations")[0],
-            "Type": animal.get("characteristics", {}).get("type"),
-            "Most Distinctive Feature": animal.get("characteristics", {}).get("most_distinctive_feature"),
-            "Scientific Name": animal.get("taxonomy", {}).get("scientific_name"),
-            "Biggest Threat": animal.get("characteristics", {}).get("biggest_threat")
-        }
+        if animal.get("characteristics").get("skin_type") == skin_type:
+            individual_animal_dict = {
+                "Name": animal.get("name"),
+                "Diet": animal.get("characteristics", {}).get("diet"),
+                "Location": animal.get("locations")[0],
+                "Type": animal.get("characteristics", {}).get("type"),
+                "Most Distinctive Feature": animal.get("characteristics", {}).get("most_distinctive_feature"),
+                "Scientific Name": animal.get("taxonomy", {}).get("scientific_name"),
+                "Biggest Threat": animal.get("characteristics", {}).get("biggest_threat")
+            }
 
-        # Remove None or empty values
-        individual_animal_dict = {k: v for k, v in individual_animal_dict.items() if v}
-        html_output.append(concat_dict_to_html_format(individual_animal_dict))
+            # Remove None or empty values
+            individual_animal_dict = {k: v for k, v in individual_animal_dict.items() if v}
+            html_output.append(concat_dict_to_html_format(individual_animal_dict))
     return "\n".join(html_output)
 
 
@@ -59,6 +60,26 @@ def process_and_save_template(template_file, placeholder, html_content, output_f
         file.write(modified_html)
 
 
+def get_animal_skin_types(animal_data):
+    skin_type_list = []
+    for animal in animal_data:
+        skin_type = animal.get("characteristics", {}).get("skin_type")
+        if skin_type not in skin_type_list:
+            skin_type_list.append(skin_type)
+    return skin_type_list
+
+
+def print_skin_type_list(skin_type_list):
+    print("These types of skin are currently in the database:")
+    for skin_type in skin_type_list:
+        print(skin_type)
+
+
+def get_user_animal_skin_type():
+    return input(
+        "\nPlease enter the skin type of animals you'd like to generate data for: ").strip().capitalize()
+
+
 def main():
     """Main function to generate the animals.html file."""
     # File paths
@@ -69,7 +90,12 @@ def main():
     placeholder_text_in_template = "__REPLACE_ANIMALS_INFO__"
 
     animals_data = load_data(data_file)
-    animals_html_content = generate_animals_html_content(animals_data)
+
+    available_skin_types = get_animal_skin_types(animals_data)
+    print_skin_type_list(available_skin_types)
+    user_skin_type = get_user_animal_skin_type()
+
+    animals_html_content = generate_animals_html_content(animals_data, user_skin_type)
     process_and_save_template(template_file, placeholder_text_in_template, animals_html_content, output_file)
 
 
