@@ -10,14 +10,21 @@ def load_data(file_path):
 def concat_dict_to_html_format(animal_dict):
     """Creates an HTML list item from a dictionary with a card layout."""
     title = animal_dict.get("Name", "Unknown")
+
     details = "\n".join(
-        [f"<strong>{key}:</strong> {value}<br/>" for key, value in animal_dict.items() if key != "Name"]
+        [
+            f'<li class="card__detail-item" data-label="{key}:">{value}</li>'
+            for key, value in animal_dict.items()
+            if key != "Name"
+        ]
     )
 
     return f"""<li class="cards__item">
 <div class="card__title">{title}</div>
-<p class="card__text">{details}
-</p></li>"""
+<ul class="card__details">
+{details}
+</ul>
+</li>"""
 
 
 def generate_animals_html_content(animals_data):

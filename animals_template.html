@@ -51,6 +51,7 @@
         }
 
         .card__title {
+          text-align: center;
           color: @gray-dark;
           font-size: 1.25rem;
           font-weight: 300;
@@ -58,12 +59,25 @@
           text-transform: uppercase;
         }
 
-        .card__text {
+        .card__details {
           flex: 1 1 auto;
           font-size: 0.95rem;
           line-height: 2;
-          margin-bottom: 1.25rem;
+          margin: 1.25rem;
+          list-style: none;
         }
+
+        .card__detail-item::before {
+          content: attr(data-label);
+          font-weight: bold;
+          margin-right: 0.5rem;      /* Add spacing between the label and value */
+        }
+
+        .card__detail-item {
+          display: flex;             /* Ensure proper spacing for label and content */
+          align-items: baseline;     /* Align label and content correctly */
+        }
+
         </style>
     </head>
     <body>

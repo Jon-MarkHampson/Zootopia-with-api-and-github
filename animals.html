@@ -51,6 +51,7 @@
         }
 
         .card__title {
+          text-align: center;
           color: @gray-dark;
           font-size: 1.25rem;
           font-weight: 300;
@@ -58,12 +59,25 @@
           text-transform: uppercase;
         }
 
-        .card__text {
+        .card__details {
           flex: 1 1 auto;
           font-size: 0.95rem;
           line-height: 2;
-          margin-bottom: 1.25rem;
+          margin: 1.25rem;
+          list-style: none;
         }
+
+        .card__detail-item::before {
+          content: attr(data-label);
+          font-weight: bold;
+          margin-right: 0.5rem;      /* Add spacing between the label and value */
+        }
+
+        .card__detail-item {
+          display: flex;             /* Ensure proper spacing for label and content */
+          align-items: baseline;     /* Align label and content correctly */
+        }
+
         </style>
     </head>
     <body>
@@ -71,150 +85,188 @@
         <ul class="cards">
             <li class="cards__item">
 <div class="card__title">American Foxhound</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> North-America<br/>
-<strong>Type:</strong> Hound<br/>
-<strong>Scientific Name:</strong> Canis lupus<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">North-America</li>
+<li class="card__detail-item" data-label="Type:">Hound</li>
+<li class="card__detail-item" data-label="Scientific Name:">Canis lupus</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Arctic Fox</div>
-<p class="card__text"><strong>Diet:</strong> Carnivore<br/>
-<strong>Location:</strong> Eurasia<br/>
-<strong>Type:</strong> Mammal<br/>
-<strong>Scientific Name:</strong> Vulpes lagopus<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Carnivore</li>
+<li class="card__detail-item" data-label="Location:">Eurasia</li>
+<li class="card__detail-item" data-label="Type:">Mammal</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes lagopus</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Cross Fox</div>
-<p class="card__text"><strong>Diet:</strong> Carnivore<br/>
-<strong>Location:</strong> North-America<br/>
-<strong>Type:</strong> mammal<br/>
-<strong>Most Distinctive Feature:</strong> The cross on its back.<br/>
-<strong>Scientific Name:</strong> Vulpes vulpes<br/>
-<strong>Biggest Threat:</strong> Humans, wolves, coyotes, mountain lions, eagles, bears<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Carnivore</li>
+<li class="card__detail-item" data-label="Location:">North-America</li>
+<li class="card__detail-item" data-label="Type:">mammal</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">The cross on its back.</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes vulpes</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Humans, wolves, coyotes, mountain lions, eagles, bears</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Darwin’s fox</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> South-America<br/>
-<strong>Type:</strong> Mammal<br/>
-<strong>Most Distinctive Feature:</strong> Its small size<br/>
-<strong>Scientific Name:</strong> Lycalopex fulvipes<br/>
-<strong>Biggest Threat:</strong> Habitat fragmentation, feral and domesticated dogs<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">South-America</li>
+<li class="card__detail-item" data-label="Type:">Mammal</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">Its small size</li>
+<li class="card__detail-item" data-label="Scientific Name:">Lycalopex fulvipes</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Habitat fragmentation, feral and domesticated dogs</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">English Foxhound</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Europe<br/>
-<strong>Scientific Name:</strong> Canis lupus<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Europe</li>
+<li class="card__detail-item" data-label="Scientific Name:">Canis lupus</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Fennec Fox</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Africa<br/>
-<strong>Most Distinctive Feature:</strong> Large, over-sized ears<br/>
-<strong>Scientific Name:</strong> Vulpes zerda<br/>
-<strong>Biggest Threat:</strong> Habitat loss and hunting<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Africa</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">Large, over-sized ears</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes zerda</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Habitat loss and hunting</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Fox</div>
-<p class="card__text"><strong>Diet:</strong> Carnivore<br/>
-<strong>Location:</strong> Africa<br/>
-<strong>Type:</strong> Mammal<br/>
-<strong>Scientific Name:</strong> Vulpes vulpes<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Carnivore</li>
+<li class="card__detail-item" data-label="Location:">Africa</li>
+<li class="card__detail-item" data-label="Type:">Mammal</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes vulpes</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Fox Snakes</div>
-<p class="card__text"><strong>Diet:</strong> Carnivore<br/>
-<strong>Location:</strong> North-America<br/>
-<strong>Most Distinctive Feature:</strong> Copper or bronze-colored head<br/>
-<strong>Scientific Name:</strong> P. vulpinus and P. ramspotti<br/>
-<strong>Biggest Threat:</strong> Mistaken identity, roads<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Carnivore</li>
+<li class="card__detail-item" data-label="Location:">North-America</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">Copper or bronze-colored head</li>
+<li class="card__detail-item" data-label="Scientific Name:">P. vulpinus and P. ramspotti</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Mistaken identity, roads</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Fox Squirrel</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Central-America<br/>
-<strong>Type:</strong> rodent<br/>
-<strong>Most Distinctive Feature:</strong> Large size and large, bushy tail<br/>
-<strong>Scientific Name:</strong> Sciurus niger<br/>
-<strong>Biggest Threat:</strong> Overhunting, forest destruction<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Central-America</li>
+<li class="card__detail-item" data-label="Type:">rodent</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">Large size and large, bushy tail</li>
+<li class="card__detail-item" data-label="Scientific Name:">Sciurus niger</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Overhunting, forest destruction</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Fox Terrier</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Europe<br/>
-<strong>Scientific Name:</strong> Canis Lupus<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Europe</li>
+<li class="card__detail-item" data-label="Scientific Name:">Canis Lupus</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Golden-Crowned Flying Fox</div>
-<p class="card__text"><strong>Diet:</strong> Herbivore<br/>
-<strong>Location:</strong> Asia<br/>
-<strong>Most Distinctive Feature:</strong> Soft golden cap<br/>
-<strong>Scientific Name:</strong> Acerodon jubatus<br/>
-<strong>Biggest Threat:</strong> Human hunters<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Herbivore</li>
+<li class="card__detail-item" data-label="Location:">Asia</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">Soft golden cap</li>
+<li class="card__detail-item" data-label="Scientific Name:">Acerodon jubatus</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Human hunters</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Gray Fox</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Central-America<br/>
-<strong>Type:</strong> Mammal<br/>
-<strong>Most Distinctive Feature:</strong> The silver gray coat of fur<br/>
-<strong>Scientific Name:</strong> Urocyon cinereoargenteus<br/>
-<strong>Biggest Threat:</strong> Hunting and habitat loss<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Central-America</li>
+<li class="card__detail-item" data-label="Type:">Mammal</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">The silver gray coat of fur</li>
+<li class="card__detail-item" data-label="Scientific Name:">Urocyon cinereoargenteus</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Hunting and habitat loss</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Kit Fox</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Central-America<br/>
-<strong>Type:</strong> mammal<br/>
-<strong>Most Distinctive Feature:</strong> tiny bodies and enormous ears<br/>
-<strong>Scientific Name:</strong> Vulpes macrotis merriam<br/>
-<strong>Biggest Threat:</strong> habitat destruction, competition from coyotes<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Central-America</li>
+<li class="card__detail-item" data-label="Type:">mammal</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">tiny bodies and enormous ears</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes macrotis merriam</li>
+<li class="card__detail-item" data-label="Biggest Threat:">habitat destruction, competition from coyotes</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Marble Fox</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> North-America<br/>
-<strong>Type:</strong> Mammal<br/>
-<strong>Most Distinctive Feature:</strong> The marble-colored coat<br/>
-<strong>Scientific Name:</strong> Vulpes vulpes<br/>
-<strong>Biggest Threat:</strong> Fur industry<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">North-America</li>
+<li class="card__detail-item" data-label="Type:">Mammal</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">The marble-colored coat</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes vulpes</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Fur industry</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Red Fox</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Africa<br/>
-<strong>Most Distinctive Feature:</strong> The bushy tail<br/>
-<strong>Scientific Name:</strong> Vulpes vulpes<br/>
-<strong>Biggest Threat:</strong> Hunting<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Africa</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">The bushy tail</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes vulpes</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Hunting</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Smooth Fox Terrier</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Europe<br/>
-<strong>Scientific Name:</strong> Canis lupus<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Europe</li>
+<li class="card__detail-item" data-label="Scientific Name:">Canis lupus</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Tibetan Fox</div>
-<p class="card__text"><strong>Diet:</strong> Carnivore<br/>
-<strong>Location:</strong> Asia<br/>
-<strong>Type:</strong> Mammal<br/>
-<strong>Most Distinctive Feature:</strong> Square-shaped skull<br/>
-<strong>Scientific Name:</strong> Vulpes ferrilata<br/>
-<strong>Biggest Threat:</strong> Pika population reduction<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Carnivore</li>
+<li class="card__detail-item" data-label="Location:">Asia</li>
+<li class="card__detail-item" data-label="Type:">Mammal</li>
+<li class="card__detail-item" data-label="Most Distinctive Feature:">Square-shaped skull</li>
+<li class="card__detail-item" data-label="Scientific Name:">Vulpes ferrilata</li>
+<li class="card__detail-item" data-label="Biggest Threat:">Pika population reduction</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Toy Fox Terrier</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> North-America<br/>
-<strong>Scientific Name:</strong> Canis lupus<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">North-America</li>
+<li class="card__detail-item" data-label="Scientific Name:">Canis lupus</li>
+</ul>
+</li>
 <li class="cards__item">
 <div class="card__title">Wire Fox Terrier</div>
-<p class="card__text"><strong>Diet:</strong> Omnivore<br/>
-<strong>Location:</strong> Europe<br/>
-<strong>Scientific Name:</strong> Canis lupus<br/>
-</p></li>
+<ul class="card__details">
+<li class="card__detail-item" data-label="Diet:">Omnivore</li>
+<li class="card__detail-item" data-label="Location:">Europe</li>
+<li class="card__detail-item" data-label="Scientific Name:">Canis lupus</li>
+</ul>
+</li>
         </ul>
     </body>
 </html>
