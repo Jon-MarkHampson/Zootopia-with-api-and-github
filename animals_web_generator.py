@@ -118,7 +118,7 @@ def main():
 
     animals_html_content = generate_animals_html_content(animals_data, user_skin_type)
     process_and_save_template(template_file, placeholder_text_in_template, animals_html_content, output_file)
-
+    print("Website was successfully generated to the file animals.html.")
 
 if __name__ == "__main__":
     main()
