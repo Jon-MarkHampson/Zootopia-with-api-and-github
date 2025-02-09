@@ -1,6 +1,4 @@
-import requests
-import json
-
+from data_fetcher import fetch_data
 
 def concat_dict_to_html_format(animal_dict):
     """Creates an HTML list item from a dictionary with a card layout."""
@@ -20,19 +18,6 @@ def concat_dict_to_html_format(animal_dict):
 {details}
 </ul>
 </li>"""
-
-
-def get_data_from_api_ninjas(animal):
-    """Fetches animal data from the API Ninjas endpoint."""
-    # name = 'Fox'
-    api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(animal)
-    response = requests.get(api_url, headers={'X-Api-Key': 'BpPn4+cMHs5tQgekIo4diw==XWgWu2SYDeE5lHQM'})
-    # print(response)
-    if response.status_code == requests.codes.ok:
-        return response.json()
-    else:
-        print("Error:", response.status_code, response.text)
-        return []
 
 
 def generate_animals_html_content(animals_data, skin_type):
@@ -116,7 +101,7 @@ def main():
     placeholder_text_in_template = "__REPLACE_ANIMALS_INFO__"
 
     user_animal = get_user_animal()
-    animals_data = get_data_from_api_ninjas(user_animal)
+    animals_data = fetch_data(user_animal)
     print(animals_data)
 
     if animals_data:
