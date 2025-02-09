@@ -1,10 +1,13 @@
+import requests
 import json
 
+ANIMAL = "Fox"
 
-def load_data(file_path):
-    """ Loads a JSON file """
-    with open(file_path, "r", encoding="utf-8") as handle:
-        return json.load(handle)
+
+# def load_data(file_path):
+#     """ Loads a JSON file """
+#     with open(file_path, "r", encoding="utf-8") as handle:
+#         return json.load(handle)
 
 
 def concat_dict_to_html_format(animal_dict):
@@ -25,6 +28,18 @@ def concat_dict_to_html_format(animal_dict):
 {details}
 </ul>
 </li>"""
+
+
+def get_data_from_api_ninjas(animal):
+    # name = 'Fox'
+    api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(animal)
+    response = requests.get(api_url, headers={'X-Api-Key': 'BpPn4+cMHs5tQgekIo4diw==XWgWu2SYDeE5lHQM'})
+    # print(response)
+    if response.status_code == requests.codes.ok:
+        return response.json()
+    else:
+        print("Error:", response.status_code, response.text)
+        return []
 
 
 def generate_animals_html_content(animals_data, skin_type):
@@ -84,12 +99,14 @@ def main():
     """Main function to generate the animals.html file."""
     # File paths
     template_file = "animals_template.html"
-    data_file = "animals_data.json"
+    # data_file = "animals_data.json"
     output_file = "animals.html"
 
     placeholder_text_in_template = "__REPLACE_ANIMALS_INFO__"
 
-    animals_data = load_data(data_file)
+    # animals_data = load_data(data_file)
+    animals_data = get_data_from_api_ninjas(ANIMAL)
+    print(animals_data)
 
     available_skin_types = get_animal_skin_types(animals_data)
     print_skin_type_list(available_skin_types)
