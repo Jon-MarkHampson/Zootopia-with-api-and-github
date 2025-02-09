@@ -95,17 +95,21 @@ def get_user_animal_skin_type():
         "\nPlease enter the skin type of animals you'd like to generate data for: ").strip().capitalize()
 
 
+def get_user_animal():
+    return input(
+        "\nPlease enter and animal to collect data about: ").strip().capitalize()
+
+
 def main():
     """Main function to generate the animals.html file."""
     # File paths
     template_file = "animals_template.html"
-    # data_file = "animals_data.json"
     output_file = "animals.html"
 
     placeholder_text_in_template = "__REPLACE_ANIMALS_INFO__"
 
-    # animals_data = load_data(data_file)
-    animals_data = get_data_from_api_ninjas(ANIMAL)
+    user_animal = get_user_animal()
+    animals_data = get_data_from_api_ninjas(user_animal)
     print(animals_data)
 
     available_skin_types = get_animal_skin_types(animals_data)
