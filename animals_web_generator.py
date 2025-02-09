@@ -1,14 +1,6 @@
 import requests
 import json
 
-ANIMAL = "Fox"
-
-
-# def load_data(file_path):
-#     """ Loads a JSON file """
-#     with open(file_path, "r", encoding="utf-8") as handle:
-#         return json.load(handle)
-
 
 def concat_dict_to_html_format(animal_dict):
     """Creates an HTML list item from a dictionary with a card layout."""
@@ -31,6 +23,7 @@ def concat_dict_to_html_format(animal_dict):
 
 
 def get_data_from_api_ninjas(animal):
+    """Fetches animal data from the API Ninjas endpoint."""
     # name = 'Fox'
     api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(animal)
     response = requests.get(api_url, headers={'X-Api-Key': 'BpPn4+cMHs5tQgekIo4diw==XWgWu2SYDeE5lHQM'})
@@ -61,6 +54,20 @@ def generate_animals_html_content(animals_data, skin_type):
             individual_animal_dict = {k: v for k, v in individual_animal_dict.items() if v}
             html_output.append(concat_dict_to_html_format(individual_animal_dict))
     return "\n".join(html_output)
+
+
+def generate_animal_doesnt_exist_html(animal):
+    """Creates an HTML list item with h2 warning in a card layout."""
+    title = animal
+
+    details = f"<h2>The animal '{animal}' doesn't exist.</h2>"
+
+    return f"""<li class="cards__item">
+<div class="card__title">{title}</div>
+<ul class="card__details">
+{details}
+</ul>
+</li>"""
 
 
 def process_and_save_template(template_file, placeholder, html_content, output_file):
@@ -112,13 +119,19 @@ def main():
     animals_data = get_data_from_api_ninjas(user_animal)
     print(animals_data)
 
-    available_skin_types = get_animal_skin_types(animals_data)
-    print_skin_type_list(available_skin_types)
-    user_skin_type = get_user_animal_skin_type()
+    if animals_data:
+        available_skin_types = get_animal_skin_types(animals_data)
+        print_skin_type_list(available_skin_types)
+        user_skin_type = get_user_animal_skin_type()
 
-    animals_html_content = generate_animals_html_content(animals_data, user_skin_type)
+        animals_html_content = generate_animals_html_content(animals_data, user_skin_type)
+
+    else:
+        animals_html_content = generate_animal_doesnt_exist_html(user_animal)
+
     process_and_save_template(template_file, placeholder_text_in_template, animals_html_content, output_file)
     print("Website was successfully generated to the file animals.html.")
+
 
 if __name__ == "__main__":
     main()
