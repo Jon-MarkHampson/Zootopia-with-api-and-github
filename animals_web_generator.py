@@ -102,7 +102,6 @@ def main():
 
     user_animal = get_user_animal()
     animals_data = fetch_data(user_animal)
-    print(animals_data)
 
     if animals_data:
         available_skin_types = get_animal_skin_types(animals_data)
