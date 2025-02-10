@@ -107,5 +107,3 @@ dmypy.json
 # Windows system files
 Thumbs.db
 desktop.ini
-
-codio_api_tests.py
