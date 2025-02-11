@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv('API_KEY')
+URL = 'https://api.api-ninjas.com/v1/animals?name={}'
 
 
 def fetch_data(animal_name):
@@ -24,9 +25,10 @@ def fetch_data(animal_name):
       }
     },
     """
-    api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(animal_name)
-    response = requests.get(api_url, headers={'X-Api-Key': 'BpPn4+cMHs5tQgekIo4diw==XWgWu2SYDeE5lHQM'})
-    # print(response)
+
+    api_url = URL.format(animal_name)
+    response = requests.get(api_url, headers={'X-Api-Key': API_KEY})
+
     if response.status_code == requests.codes.ok:
         return response.json()
     else:

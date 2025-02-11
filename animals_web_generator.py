@@ -21,7 +21,7 @@ def concat_dict_to_html_format(animal_dict):
 
 
 def generate_animals_html_content(animals_data, skin_type):
-    """Generates the HTML content for all animals."""
+    """Generates the HTML content for animals filtered by skin type"""
     html_output = []
     for animal in animals_data:
         if animal.get("characteristics").get("skin_type") == skin_type:
@@ -42,7 +42,7 @@ def generate_animals_html_content(animals_data, skin_type):
 
 
 def generate_animal_doesnt_exist_html(animal):
-    """Creates an HTML list item with h2 warning in a card layout."""
+    """Creates an HTML list item with h2 warning that the animal doesn't exist."""
     title = animal
 
     details = f"<h2>The animal '{animal}' doesn't exist.</h2>"
@@ -68,6 +68,7 @@ def process_and_save_template(template_file, placeholder, html_content, output_f
 
 
 def get_animal_skin_types(animal_data):
+    """Retrieves a list of unique skin types from the animal data."""
     skin_type_list = []
     for animal in animal_data:
         skin_type = animal.get("characteristics", {}).get("skin_type")
@@ -77,17 +78,20 @@ def get_animal_skin_types(animal_data):
 
 
 def print_skin_type_list(skin_type_list):
+    """Prints the available skin types to the console."""
     print("These types of skin are currently in the database:")
     for skin_type in skin_type_list:
         print(skin_type)
 
 
 def get_user_animal_skin_type():
+    """Prompts the user to input a skin type."""
     return input(
         "\nPlease enter the skin type of animals you'd like to generate data for: ").strip().capitalize()
 
 
 def get_user_animal():
+    """Prompts the user to input the name of an animal."""
     return input(
         "\nPlease enter and animal to collect data about: ").strip().capitalize()
 
